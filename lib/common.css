@@ -1,0 +1,17 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+#wrapper {
+    max-width: 1160px;
+    margin: 20px auto 10px auto;
+}
+
+.cloaking {
+    display: none;
+}
+
+.bold {
+    font-weight: bold;
+}

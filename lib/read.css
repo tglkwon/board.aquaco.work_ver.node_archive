@@ -1,0 +1,68 @@
+header > span {
+    cursor: pointer;
+}
+
+main > .header > .title {
+    font-size: 32pt;
+}
+
+main > .header > .info {
+    width: 100%;
+    margin: 10px 0;
+    overflow: auto;
+}
+
+main > .header > .info > div {
+    float: left;
+    width: 50%;
+}
+
+main > .header > .info > .functional {
+    text-align: right;
+}
+
+main > .text {
+    font-size: 12pt;
+}
+
+footer > table {
+    width: 100%;
+}
+
+footer > table tr > td.nickname  {
+    width: 170px;
+    vertical-align: top;
+    padding: 10px 0;
+}
+
+footer > table tr > td.reply {
+    padding: 10px;
+}
+
+footer > table tr > td.datetime {
+    width: 88px;
+    vertical-align: top;
+    padding: 10px 0;
+}
+
+footer > table tr > td.reply > span.funckey {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+footer > table tr > td.reply > span.funckey > span {
+    margin-left: 7px;
+    font-size: 10pt;
+    color: blue;
+    cursor: pointer;
+}
+
+footer > table tr > td.reply-box > textarea {
+    width: 100%;
+    height: 3em;
+    resize: none;
+}
+
+footer > table tr > td.reply-send {
+    text-align: center;
+}
