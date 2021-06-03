@@ -3,9 +3,8 @@
         const params = new URLSearchParams(location.search)
         let page = 1
         if(params.get("page")) {
-            page = params.get("page")
+            page = Number(params.get("page"))
         }
-        console.log(page)
 
         const res = await axios({
             method: "GET",
@@ -40,7 +39,7 @@
             
         }
 
-        if(page >= pageLastNum - 5) {
+        if(page > pageLastNum - pageLastNum % 5) {
             pageLast.classList.add("cloaking")
             pageNext.classList.add("cloaking")
         } else {
@@ -48,9 +47,9 @@
             pageNext.classList.remove("cloaking")          
         }
 
-        for(let i = 1; i <= 5; i++) {
-            const pointer = page - page % 5 + i
-            const pageLi = document.querySelector(`footer > ol > li:nth-child(${i + 2})`)
+        for(let i = 0; i < 5; i++) {
+            const pointer = page - (page - 1) % 5  + i
+            const pageLi = document.querySelector(`footer > ol > li:nth-child(${i + 3})`)
             pageLi.innerText = pointer
             pageLi.addEventListener("click", () => {
                 location.href = `/?page=${pointer}` 

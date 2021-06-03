@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>AquaCo Board</title>
+        <link rel="stylesheet" href="lib/common.css">
+        <link rel="stylesheet" href="lib/login.css">
+        <script src="script/checkES.js"></script>
+    </head>
+    <body>
+        <div id="wrapper">
+            <main>
+                <input type="text" name="id" placeholder="아이디"><br>
+                <input type="password" name="password" placeholder="비밀번호">
+            </main>
+            <aside>
+                <button onclick="Login()">login</button><br>
+                <button onclick="location.href = '/register.html'">register</button>                
+            </aside>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="script/common.js"></script>    
+        <script src="script/login.js"></script>
+    </body>
+</html>

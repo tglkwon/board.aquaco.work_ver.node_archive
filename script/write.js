@@ -2,7 +2,9 @@ let myEditor
 
 ;(() => {
     ClassicEditor
-        .create(document.querySelector('#editor'))
+        .create(document.querySelector('#editor'), {
+            mediaEmbed: {previewsInData: true}
+        })
         .then(editor => {
             myEditor = editor
         })

@@ -130,6 +130,7 @@ async function GetReply(no) {
             const spanDelete = document.createElement("span")
             spanDelete.classList.add("delete")
             spanDelete.innerText = "삭제"
+            spanDelete.addEventListener("click", () => DeleteReply(reply.no))
 
             spanFunckey.append(spanModify, spanDelete)
 
@@ -152,4 +153,69 @@ async function GetReply(no) {
         tbody.append(tr)
         
     }
+}
+
+function GoModifyText() {
+    const params = new URLSearchParams(location.search)
+    const no = params.get("no")
+    
+    location.href = `/modify.html?no=${no}`
+}
+
+async function DeleteText() {
+    try {
+        const params = new URLSearchParams(location.search)
+        const no = params.get("no")
+
+        const yn = confirm("레알루?")
+        
+        if(yn) {
+            const res = await axios({
+                method: "DELETE",
+                url: `//api.board.aquaco.work/board/${no}`,
+                headers: {
+                    token: config.token
+                }
+            })
+            
+            if(!res.data.success) {
+                throw new Error()
+            }
+
+            GoList()
+        }
+    } catch(e) {
+        console.error(e)
+        alert("글 삭제 실패")
+    }
+
+}
+
+async function DeleteReply(replyNo) {
+    try {
+        const params = new URLSearchParams(location.search)
+        const textNo = params.get("no")
+
+        const yn = confirm("레알루?")
+        
+        if(yn) {
+            const res = await axios({
+                method: "DELETE",
+                url: `//api.board.aquaco.work/board/${textNo}/reply/${replyNo}`,
+                headers: {
+                    token: config.token
+                }
+            })
+            
+            if(!res.data.success) {
+                throw new Error()
+            }
+
+            GetReply(textNo)
+        }
+    } catch(e) {
+        console.error(e)
+        alert("글 삭제 실패")
+    }
+
 }

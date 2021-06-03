@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <title>AquaCo Board</title>
         <link rel="stylesheet" href="lib/common.css">
-        <link rel="stylesheet" href="lib/write.css">
+        <link rel="stylesheet" href="lib/modify.css">
         <script src="script/checkES.js"></script>
     </head>
     <body>
@@ -20,12 +20,13 @@
                 <div id="editor"></div>    
             </main>
             <footer>
-                <button onclick="SendText()">전송</button>
-            </footer>
+                <button onclick="SendModifiedText()">전송</button>
+            </footer>            
+            
         </div>
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
         <script src="script/common.js"></script>    
-        <script src="script/write.js"></script>
+        <script src="script/modify.js"></script>
     </body>
 </html>

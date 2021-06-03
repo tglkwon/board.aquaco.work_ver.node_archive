@@ -1,6 +1,6 @@
 let config = {
     // Sample token for develop
-    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IuyVhOydtOuUlDMiLCJuaWNrbmFtZSI6IuyVhOy_oOyVhOy7tO2NvOuLiCIsImlhdCI6MTYyMjYxNjY0NiwiZXhwIjoxNjIyNjU5ODQ2fQ.6so6VoR4IHZUE4QzgK17WfPk525Busj_3L7IGXpiM8g"
+    token: ""
 }
 
 function parseJwt(token) {
@@ -12,18 +12,30 @@ function parseJwt(token) {
 
     return JSON.parse(jsonPayload)
 }
+;(() => {
+    if((location.pathname !== "/login.html") && (location.pathname !== "/register.html")) {
+        if(localStorage.getItem("token")) {
+            config.token = localStorage.getItem("token")
+        } else {
+            location.href = "/login.html"
+            return
+        }
+    
+        config.decoded = parseJwt(config.token)
+    
+        if(config.decoded.exp < Date.now() / 1000){
+            location.href = "/login.html"
+            return
+        } 
+    }
 
-config.decoded = parseJwt(config.token)
-
-if(config.decoded.exp < Date.now() / 1000){
-    //토큰만료
-    alert("토큰 만료")
-}
+    
+})() 
 
 function GoList() {
     if(document.referrer.includes("board.aquaco.work")) {        
-        if(location.pathname === "/") {
-            history.back()
+        if(document.referrer.replace(/^[^:]+:\/\/[^/]+/, '').replace(/[#?].*/, '') === "/") {
+            location.href = document.referrer.replace(/^[^:]+:\/\/[^/]+/, '').replace(/#.*/, '')
             return
         }
     }
