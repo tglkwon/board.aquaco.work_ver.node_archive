@@ -42,3 +42,28 @@ function GoList() {
 
     location.href = "/"
 }
+
+async function CaptureSpecialKey(event, keyCode, callback, option = {}) {
+    if(!event.Handled) {
+        event.Handled = true
+        if(event.keyCode === keyCode) {
+            if(option.ctrlKey) {
+                if(!event.ctrlKey) return
+            } else {
+                if(event.ctrlKey) return
+            }
+            if(option.altKey) {
+                if(!event.altKey) return
+            } else {
+                if(event.altKey) return
+            }
+            if(option.shiftKey) {
+                if(!event.shiftKey) return
+            } else {
+                if(event.shiftKey) return
+            }
+            event.preventDefault()
+            callback()
+        }
+    }
+}

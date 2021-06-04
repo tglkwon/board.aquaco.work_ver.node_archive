@@ -86,7 +86,12 @@
             tdTitle.innerText = item.title
             tdTitle.addEventListener("click", () => { 
                 location.href = `/read.html?no=${item.no}`
-             })
+            })
+
+            const spanCntReply = document.createElement("span")
+            spanCntReply.innerText = `[${item.cnt_reply}]`
+
+            tdTitle.append(spanCntReply)
 
             const tdNickname = document.createElement("td")
             tdNickname.classList.add("nickname")

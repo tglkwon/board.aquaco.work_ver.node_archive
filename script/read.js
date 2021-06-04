@@ -56,7 +56,7 @@ async function SendReply() {
         const no = params.get("no")
 
         const textareaReply = document.querySelector("footer > table > tfoot > tr > td.reply-box > textarea")
-        const reply = textareaReply.value
+        const reply = textareaReply.value.trim()
         textareaReply.value = ""
 
         if(!reply) {

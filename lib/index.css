@@ -45,6 +45,12 @@ main > table tr > td.title:hover {
     text-decoration: underline;
 }
 
+main > table tr > td.title > span {
+    font-size: 10pt;
+    color: #666;
+    margin-left: 5px;
+}
+
 main > table tr > th.nickname,
 main > table tr > td.nickname {
     width: 200px;

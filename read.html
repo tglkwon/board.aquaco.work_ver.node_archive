@@ -39,7 +39,7 @@
                             <td class="nickname">
                             </td>
                             <td class="reply-box">
-                                <textarea></textarea>
+                                <textarea onkeydown="CaptureSpecialKey(event, 13, SendReply)"></textarea>
                             </td>
                             <td class="reply-send">
                                 <button onclick="SendReply()">전송</button>
