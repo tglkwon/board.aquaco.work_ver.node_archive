@@ -1,27 +1,22 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>AquaCo Board</title>
-        <link rel="stylesheet" href="lib/common.css">
-        <link rel="stylesheet" href="lib/register.css">
-        <script src="script/checkES.js"></script>
-    </head>
-    <body>
-        <div id="wrapper">
-            <main>
-                <input type="text" name="id" placeholder="아이디"><br>
-                <input type="password" name="password" placeholder="비밀번호"><br>
-                <input type="password" name="passwordConfirm" placeholder="비밀번호 재확인"><br>
-                <input type="text" name="nickname" placeholder="닉네임">              
-            </main>
-            <aside>
-                <button onclick="Register()">register</button><br>
-                <button onclick="location.href = '/login.html'">login</button>
-            </aside>
-        </div>
-        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-        <script src="script/common.js"></script>    
-        <script src="script/register.js"></script>
-    </body>
-</html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/lib/register.css">
+    <link rel="stylesheet" type="text/css" href="/lib/common.css">
+</head>
+<body>
+    <div class="wrapper">
+        <span class="input">
+            <input type="text" name="id" placeholder="아이디" onkeydown="if(event.keyCode == 13) register()"><br>
+            <input type="password" name="password" placeholder="비밀번호" onkeydown="if(event.keyCode == 13) register()"><br>
+            <input type="password" name="password2"  placeholder="비밀번호" onkeydown="if(event.keyCode == 13) register()"><br>
+            <input type="text" name="nickname" placeholder="닉네임" onkeydown="if(event.keyCode == 13) register()">      
+        </span>
+        <span class="button">
+            <button type="submit" onclick="register()">회원가입</button>
+            <button onclick="location.href='login.html'">로그인</button>
+        </span>    
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/script/register.js" async></script>   
+</body>

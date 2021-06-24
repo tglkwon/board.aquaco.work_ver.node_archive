@@ -1,9 +1,43 @@
 let myEditor
 
+async function textWrite() {
+    try {
+        const token = localStorage.getItem("token")
+        const title = document.querySelector("main > header > input[name=title]").value
+        const contents = myEditor.getData()
+        
+        if(!title || !contents) {
+            alert("빈칸이 있습니다.")
+        }
+        
+        const res = await axios({
+            method: "post",
+            url: `https://api.board.aquaco.work/board`,
+            headers: {
+                token
+            },
+            data: {
+                title,
+                contents
+            }
+        })
+
+        if(res.data.result) {
+            location.href = `/read.html?titleNo=${res.data.titleNo}`
+        } else {
+            throw new Error()
+        }
+    } catch(e) {
+        alert("글 쓰기 실패")
+        console.error(e)    
+    }
+}
+
 ;(() => {
     ClassicEditor
         .create(document.querySelector('#editor'), {
-            mediaEmbed: {previewsInData: true}
+            mediaEmbed: {previewsInData: true},
+            AutoImage: {isEnabled: true}
         })
         .then(editor => {
             myEditor = editor
@@ -12,38 +46,3 @@ let myEditor
             console.error(error);
         })   
 })()
-
-async function SendText() {
-    try {
-        const inputTitle = document.querySelector("header > input[name=title]")
-        const title = inputTitle.value
-
-        const body = myEditor.getData()
-        
-        if(!title || !body) {
-            throw new Error()
-        }
-
-        const resTextSend = await axios({
-            method: "POST",
-            url: `//api.board.aquaco.work/board`,
-            headers: {
-                token: config.token
-            },
-            data: {
-                title,
-                body
-            }
-        })
-
-        if(!resTextSend.data.success) {
-            throw new Error()
-        }  
-
-        location.href = `/read.html?no=${resTextSend.data.no}`
-        
-    } catch(e) {
-        console.error(e)
-        alert("글 전송 실패")
-    }
-}

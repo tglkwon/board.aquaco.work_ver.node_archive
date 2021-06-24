@@ -1,33 +1,29 @@
-async function Register() {
+async function register() {
     try {
-        const id = document.querySelector("main > input[name=id]").value
-        const password = document.querySelector("main > input[name=password]").value
-        const nickname = document.querySelector("main > input[name=nickname]").value
+        const id = document.getElementsByName("id")[0].value
+        const password = document.getElementsByName("password")[0].value    
+        const password2 = document.getElementsByName("password2")[0].value
+        const nickname = document.getElementsByName("nickname")[0].value
 
-        if(password !== document.querySelector("main > input[name=passwordConfirm]").value) {
-            alert("비밀번호가 같지 않습니다.")
-            return
+        if(password !== password2) {
+            alert("두 비밀번호가 같지 않습니다.")
+            // throw new Error() ? 이거 의미 있나?
         }
 
         const res = await axios({
-            method: "POST",
-            url: `//api.board.aquaco.work/member`,
+            method: "post",
+            url: 'https://api.board.aquaco.work/member',
             data: {
                 id,
                 password,
                 nickname
             }
         })
-        
-        if(!res.data.success) {
-            throw new Error()
-        }
 
-        location.href = "/login.html"
-        
+        location.href = "login.html"
+
     } catch(e) {
+        alert("로그인 실패")
         console.error(e)
-        alert("몬가.. 뭔가 일어나고 있어")
     }
-
 }

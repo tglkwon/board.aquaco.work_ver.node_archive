@@ -1,74 +1,46 @@
-header {
-    height: 57px;
-}
-
-header > div {
+header > .title {
+    font-size: 20pt;
     float: left;
 }
 
-header > .title {
-    font-size: 32pt;
-    width: 275px;
-}
-
-header > .menu {
-    width: calc(100% - 275px);
+header > .button > button {
+    font-size: 15pt;
     text-align: right;
 }
 
-header > .menu > button {
-    font-size: 24pt;
-    margin-left: 10px;
-}
-
 main > table {
-    width: 100%;
-}
-
-main > table tr > td.no,
-main > table tr > td.nickname,
-main > table tr > td.datetime {
+    font-size: 15px;
     text-align: center;
 }
 
-main > table tr > th.no,
-main > table tr > td.no {
+main > table .titleNo {
     width: 50px;
+    padding: 1px 4px;
 }
 
-main > table tr > td.title {
-    padding: 0 10px;
-    cursor: pointer;
+main > table .title {
+    width: 428px;
+    padding: 4px 0;
 }
 
-main > table tr > td.title:hover {
-    text-decoration: underline;
+main > table .nickname {
+    width: 150px;
+    padding: 4px 0;
 }
 
-main > table tr > td.title > span {
-    font-size: 10pt;
-    color: #666;
-    margin-left: 5px;
+main > table .datetime {
+    margin-right: 0;
+    width: 50px;
+    padding: 4px 0;
 }
 
-main > table tr > th.nickname,
-main > table tr > td.nickname {
-    width: 200px;
+footer {
+    margin: 0 auto;
 }
 
-main > table tr > th.datetime,
-main > table tr > td.datetime {
-    width: 105px;
-}
-
-footer > ol {
-    list-style: none;
+footer > span {
+    font-size: 15px;
     text-align: center;
-    padding: 0;
+    margin: 0 4px;
 }
 
-footer > ol > li {
-    display: inline-block;
-    padding: 0 5px;
-    cursor: pointer;
-}

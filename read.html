@@ -1,56 +1,42 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>AquaCo Board</title>
-        <link rel="stylesheet" href="lib/common.css">
-        <link rel="stylesheet" href="lib/read.css">
-        <script src="script/checkES.js"></script>
-    </head>
-    <body>
-        <div id="wrapper">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/lib/read.css">    
+    <link rel="stylesheet" type="text/css" href="/lib/common.css">
+</head>
+<body>
+    <div class="wrapper">
+        <main>
             <header>
-                <span onclick="GoList()">목록으로</span>
-            </header>
-            <main>
-                <div class="header">
+                <div>
                     <div class="title">
                     </div>
-                    <div class="info">
-                        <div class="nickname"></div>
-                        <div class="functional">
-                            <span class="datetime"></span>
-                            <button onclick="GoModifyText()" class="cloaking">수정</button>
-                            <button onclick="DeleteText()"class="cloaking">삭제</button>
-                        </div>
-
+                    <div class="nickname">
+                    </div>    
+                    <div class="datetime">
                     </div>
                 </div>
-                <hr>
-                <div class="text">
+                <div class="button">
+                    <button onclick="goList()">글목록</button>
+                    <button onclick="goModify()">글수정</button>
+                    <button onclick="textDelete()">글삭제</button>    
                 </div>
-            </main>
+            </header>
             <hr>
-            <footer>
-                <table>
-                    <tbody></tbody>
-                    <tfoot>
-                        <tr>
-                            <td class="nickname">
-                            </td>
-                            <td class="reply-box">
-                                <textarea onkeydown="CaptureSpecialKey(event, 13, SendReply)"></textarea>
-                            </td>
-                            <td class="reply-send">
-                                <button onclick="SendReply()">전송</button>
-                            </td>
-                        </tr>
-                    </tfoot>                    
-                </table>
-            </footer>
-        </div>
-        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-        <script src="script/common.js"></script>    
-        <script src="script/read.js"></script>
-    </body>
-</html>
+            <div class="contents">contents
+            </div>
+        </main>
+        <hr>
+        <footer>
+            <div class="replyRead">
+            </div>
+            <div class="replyWrite">
+                <input name="reply" placeholder="댓글" onkeydown="if(event.keyCode == 13) replyWrite()">
+                <button type="submit" class="button" onclick="replyWrite()">댓글쓰기</button>
+            </div>
+        </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/script/read.js" async></script>   
+    <script src="/script/delete.js" async></script>     
+</body>

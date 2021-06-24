@@ -1,35 +1,25 @@
-async function Login() {
+async function login() {
     try {
-        const id = document.querySelector("main > input[name=id]").value
-        const password = document.querySelector("main > input[name=password]").value
 
+        const id = document.querySelector("span > input[name=id]").value
+        const password = document.querySelector("span > input[name=password]").value    
+ 
         const res = await axios({
-            method: "POST",
-            url: `//api.board.aquaco.work/member/login`,
+            method: 'post',
+            url: 'https://api.board.aquaco.work/member/login',
             data: {
-                id,
-                password
+              id,
+              password
             }
         })
-        
-        if(!res.data.success) {
-            throw new Error()
+
+        if(res.data.result) {
+            localStorage.setItem("token", res.data.token)
+            location.href = "/"
         }
 
-        const token = res.data.token
-
-        localStorage.setItem("token", token)
-
-        location.href = "/"
-        
     } catch(e) {
+        alert("로그인 실패")
         console.error(e)
-        alert("몬가.. 뭔가 일어나고 있어")
     }
-
 }
-
-;(() => {
-    localStorage.removeItem("token")
-    config.token = null
-})()

@@ -1,83 +1,64 @@
 let myEditor
 
-;(async () => {
+async function textModify() {
     try {
-        const params = new URLSearchParams(location.search)
-        const no = params.get("no")    
+        const titleNo = new URLSearchParams(location.search).get("titleNo")
+        const token = localStorage.getItem("token")
+        const title = document.querySelector("main > header > input[name=title]").value
+        const contents = myEditor.getData()
         
-        const resText = await axios({
-            method: "GET",
-            url: `//api.board.aquaco.work/board/${no}`,
-            headers: {
-                token: config.token
-            }
-        })
-
-        if(!resText.data.success) {
-            throw new Error()
+        if(!title || !contents) {
+            alert("빈칸이 있습니다.")
         }
-
-        const item = resText.data.contents
-
-        const title = document.querySelector("header > input")
-        title.value = item.title
         
-        const body = document.querySelector("main > #editor")
-        body.innerHTML = item.body
-        
-
-        ClassicEditor
-            .create(document.querySelector('#editor'), {
-                mediaEmbed: {previewsInData: true}
-            })
-            .then(editor => {
-                myEditor = editor
-            })
-            .catch(error => {
-                console.error(error);
-            })   
-
-    } catch(e) {
-        console.error(e)
-        alert("몬가.. 뭔가 일어나고 있어")
-    }
-})()
-
-
-async function SendModifiedText() {
-    try {
-        const params = new URLSearchParams(location.search)
-        const no = params.get("no")  
-
-        const inputTitle = document.querySelector("header > input[name=title]")
-        const title = inputTitle.value
-
-        const body = myEditor.getData()
-        
-        if(!title || !body) {
-            throw new Error()
-        }
-
-        const resTextSend = await axios({
-            method: "PUT",
-            url: `//api.board.aquaco.work/board/${no}`,
+        const res = await axios({
+            method: "put",
+            url: `https://api.board.aquaco.work/board/${titleNo}`,
             headers: {
-                token: config.token
+                token
             },
             data: {
                 title,
-                body
+                contents
             }
         })
 
-        if(!resTextSend.data.success) {
+        if(res.data.result) {
+            location.href = `/read.html?titleNo=${titleNo}`
+        } else {
             throw new Error()
-        }  
-
-        location.href = `/read.html?no=${no}`
-        
+        }
     } catch(e) {
-        console.error(e)
-        alert("글 전송 실패")
-    }
+        alert("글 수정 실패")
+        console.error(e)    
+    } 
 }
+;(() => {
+    const titleNo = new URLSearchParams(location.search).get("titleNo")
+    const modifyData = JSON.parse(localStorage.getItem("modify-data"))
+
+    if(titleNo !== modifyData.titleNo) {
+        alert("비정상적인 접근입니다.")
+        history.back()
+        return
+    }    
+    
+    const title = document.querySelector("main > header > input")
+    title.value = modifyData.title
+
+    const contents = document.querySelector("#editor")
+    contents.value = modifyData.contents    
+
+    ClassicEditor
+        .create(document.querySelector('#editor'), {
+            mediaEmbed: {previewsInData: true},
+            AutoImage: {isEnabled: true}
+        })
+        .then(editor => {
+            myEditor = editor
+        })
+        .catch(error => {
+            console.error(error);
+        })
+
+})()

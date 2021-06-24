@@ -1,20 +1,13 @@
-main, aside {
-    float: left;
-    margin: 0 20px;
-    width: calc(50% - 40px);    
+html, body {
+    margin: 0;
+    padding: 0;
 }
 
-main {
-    text-align: right;
+span {
+    padding: 0;
 }
 
-main > input {
-    font-size: 12pt;
-    margin: 10px 0;
-}
-
-
-aside > button {
-    font-size: 12pt;
-    margin: 10px 0;
+input, button {
+    font-size: 20pt;
+    padding: 5px;
 }
