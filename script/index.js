@@ -17,6 +17,7 @@
         }
         // make list
         const list = res.data.list
+        
         for(const item of list) {
             const tr = document.createElement("tr")
 
